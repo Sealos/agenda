@@ -1,15 +1,15 @@
 export interface IAgendaConfig {
-	name?: string;
+    name?: string;
 
-	defaultConcurrency: number;
+    defaultConcurrency: number;
 
-	processEvery: number;
+    processEvery: number;
 
-	maxConcurrency: number;
+    maxConcurrency: number;
 
-	defaultLockLimit: number;
+    defaultLockLimit: number;
 
-	lockLimit: number;
+    lockLimit: number;
 
-	defaultLockLifetime: number;
+    defaultLockLifetime: number;
 }

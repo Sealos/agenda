@@ -17,7 +17,7 @@ const clearJobs = async (): Promise<void> => {
 };
 
 const jobType = 'do work';
-const jobProcessor = () => { };
+const jobProcessor = () => {};
 
 describe('Retry', () => {
 	beforeEach(async () => {
@@ -75,8 +75,8 @@ describe('Retry', () => {
 		});
 
 		const successPromise = new Promise(resolve => {
-      agenda.on('success:a job', resolve)
-    });
+			agenda.on('success:a job', resolve);
+		});
 
 		await agenda.now('a job');
 

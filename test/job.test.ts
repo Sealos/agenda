@@ -123,7 +123,10 @@ describe('Job', () => {
 			const job2 = new Job(agenda, { name: 'demo', type: 'normal' });
 			const now = new Date().valueOf();
 			job2.repeatEvery('3 minutes', { skipImmediate: true });
-			expect(job2.attrs.nextRunAt).to.be.within(new Date(now + 180000), new Date(now + 180002)); // Inclusive
+			expect(job2.attrs.nextRunAt).to.be.within(
+				new Date(now + 180000),
+				new Date(now + 180002)
+			); // Inclusive
 		});
 		it('repeats from the existing nextRunAt property with skipImmediate', () => {
 			const job2 = new Job(agenda, { name: 'demo', type: 'normal' });
@@ -864,7 +867,9 @@ describe('Job', () => {
 				const err = spy.args[0][0];
 				expect(err.message).to.equal('Zomg fail');
 				expect(job.attrs.failCount).to.equal(1);
-				expect(job.attrs.failedAt!.valueOf()).not.to.be.below(job.attrs.lastFinishedAt!.valueOf());
+				expect(job.attrs.failedAt!.valueOf()).not.to.be.below(
+					job.attrs.lastFinishedAt!.valueOf()
+				);
 			});
 
 			it('emits fail:job name event', async () => {
@@ -882,7 +887,9 @@ describe('Job', () => {
 				const err = spy.args[0][0];
 				expect(err.message).to.equal('Zomg fail');
 				expect(job.attrs.failCount).to.equal(1);
-				expect(job.attrs.failedAt!.valueOf()).to.not.be.below(job.attrs.lastFinishedAt!.valueOf());
+				expect(job.attrs.failedAt!.valueOf()).to.not.be.below(
+					job.attrs.lastFinishedAt!.valueOf()
+				);
 			});
 		});
 	});
@@ -1134,13 +1141,17 @@ describe('Job', () => {
 					// eslint-disable-next-line prefer-promise-reject-errors
 					new Promise<number[]>((_, reject) => {
 						setTimeout(() => {
-							reject(`not processed`);
+							reject(new Error(`not processed`));
 						}, 2000);
 					})
 				]);
 				expect(results).not.to.contain(2);
 			} catch (err) {
-				console.log('stats', err, JSON.stringify(await agenda.getRunningStats(), undefined, 3));
+				console.log(
+					'stats',
+					err,
+					JSON.stringify(await agenda.getRunningStats(), undefined, 3)
+				);
 				throw err;
 			}
 		});
@@ -1176,13 +1187,17 @@ describe('Job', () => {
 					// eslint-disable-next-line prefer-promise-reject-errors
 					new Promise<number[]>((_, reject) => {
 						setTimeout(() => {
-							reject(`not processed`);
+							reject(new Error(`not processed`));
 						}, 2000);
 					})
 				]);
 				expect(results.join('')).to.eql(results.sort().join(''));
 			} catch (err) {
-				console.log('stats', err, JSON.stringify(await agenda.getRunningStats(), undefined, 3));
+				console.log(
+					'stats',
+					err,
+					JSON.stringify(await agenda.getRunningStats(), undefined, 3)
+				);
 				throw err;
 			}
 		});
@@ -1208,7 +1223,11 @@ describe('Job', () => {
 			});
 
 			await Promise.all([
-				agenda.create('fifo-priority', { i: 1 }).schedule(new Date(now)).priority('high').save(),
+				agenda
+					.create('fifo-priority', { i: 1 })
+					.schedule(new Date(now))
+					.priority('high')
+					.save(),
 				agenda
 					.create('fifo-priority', { i: 2 })
 					.schedule(new Date(now + 100))
@@ -1227,7 +1246,7 @@ describe('Job', () => {
 					// eslint-disable-next-line prefer-promise-reject-errors
 					new Promise<any>((_, reject) => {
 						setTimeout(() => {
-							reject(`not processed`);
+							reject(new Error(`not processed`));
 						}, 2000);
 					})
 				]);
@@ -1235,7 +1254,11 @@ describe('Job', () => {
 				expect(times.join('')).to.eql(times.sort().join(''));
 				expect(priorities).to.eql([10, 10, -10]);
 			} catch (err) {
-				console.log('stats', err, JSON.stringify(await agenda.getRunningStats(), undefined, 3));
+				console.log(
+					'stats',
+					err,
+					JSON.stringify(await agenda.getRunningStats(), undefined, 3)
+				);
 				throw err;
 			}
 		});
@@ -1272,7 +1295,7 @@ describe('Job', () => {
 					// eslint-disable-next-line prefer-promise-reject-errors
 					new Promise((_, reject) => {
 						setTimeout(() => {
-							reject(`not processed`);
+							reject(new Error(`not processed`));
 						}, 2000);
 					})
 				]);
@@ -1554,7 +1577,9 @@ describe('Job', () => {
 				};
 
 				const serverPath = path.join(__dirname, 'fixtures', 'agenda-instance.ts');
-				const n = cp.fork(serverPath, [mongoCfg, 'now'], { execArgv: ['-r', 'ts-node/register'] });
+				const n = cp.fork(serverPath, [mongoCfg, 'now'], {
+					execArgv: ['-r', 'ts-node/register']
+				});
 
 				n.on('message', receiveMessage);
 				n.on('error', serviceError);
