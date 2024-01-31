@@ -79,7 +79,7 @@
     "mocha": "^10.2.0",
     "mongodb-memory-server": "^9.1.6",
     "nyc": "^15.1.0",
-    "prettier": "^2.7.1",
+    "prettier": "^3.2.4",
     "sinon": "17.0.1",
     "standard-version": "^9.5.0",
     "ts-node": "^10.9.2",
