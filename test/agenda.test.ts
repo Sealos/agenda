@@ -166,7 +166,9 @@ describe('Agenda', () => {
 			it('is inherited by jobs', () => {
 				globalAgenda.defaultLockLifetime(7777);
 				globalAgenda.define('testDefaultLockLifetime', () => {});
-				expect(globalAgenda.definitions.testDefaultLockLifetime.lockLifetime).to.equal(7777);
+				expect(globalAgenda.definitions.testDefaultLockLifetime.lockLifetime).to.equal(
+					7777
+				);
 			});
 		});
 		describe('sort', () => {
@@ -229,7 +231,9 @@ describe('Agenda', () => {
 		describe('every', () => {
 			describe('with a job name specified', () => {
 				it('returns a job', async () => {
-					expect(await globalAgenda.every('5 minutes', 'send email')).to.be.an.instanceof(Job);
+					expect(await globalAgenda.every('5 minutes', 'send email')).to.be.an.instanceof(
+						Job
+					);
 				});
 				it('sets the repeatEvery', async () => {
 					expect(
@@ -240,7 +244,9 @@ describe('Agenda', () => {
 				});
 				it('sets the agenda', async () => {
 					expect(
-						await globalAgenda.every('5 seconds', 'send email').then(({ agenda }) => agenda)
+						await globalAgenda
+							.every('5 seconds', 'send email')
+							.then(({ agenda }) => agenda)
 					).to.equal(globalAgenda);
 				});
 				it('should update a job that was previously scheduled with `every`', async () => {
@@ -273,9 +279,9 @@ describe('Agenda', () => {
 			});
 			describe('with array of names specified', () => {
 				it('returns array of jobs', async () => {
-					expect(await globalAgenda.every('5 minutes', ['send email', 'some job'])).to.be.an(
-						'array'
-					);
+					expect(
+						await globalAgenda.every('5 minutes', ['send email', 'some job'])
+					).to.be.an('array');
 				});
 			});
 		});
@@ -283,9 +289,9 @@ describe('Agenda', () => {
 		describe('schedule', () => {
 			describe('with a job name specified', () => {
 				it('returns a job', async () => {
-					expect(await globalAgenda.schedule('in 5 minutes', 'send email')).to.be.an.instanceof(
-						Job
-					);
+					expect(
+						await globalAgenda.schedule('in 5 minutes', 'send email')
+					).to.be.an.instanceof(Job);
 				});
 				it('sets the schedule', async () => {
 					const fiveish = new Date().valueOf() + 250000;
@@ -295,9 +301,9 @@ describe('Agenda', () => {
 			});
 			describe('with array of names specified', () => {
 				it('returns array of jobs', async () => {
-					expect(await globalAgenda.schedule('5 minutes', ['send email', 'some job'])).to.be.an(
-						'array'
-					);
+					expect(
+						await globalAgenda.schedule('5 minutes', ['send email', 'some job'])
+					).to.be.an('array');
 				});
 			});
 		});
@@ -337,18 +343,14 @@ describe('Agenda', () => {
 						job2.attrs.nextRunAt!.toISOString()
 					);
 
-					mongoDb
+					const jobs = await mongoDb
 						.collection('agendaJobs')
 						.find({
 							name: 'unique job'
 						})
-						.toArray((err, jobs) => {
-							if (err) {
-								throw err;
-							}
+						.toArray();
 
-							expect(jobs).to.have.length(1);
-						});
+					expect(jobs).to.have.length(1);
 				});
 
 				it('should not modify job when unique matches and insertOnly is set to true', async () => {
@@ -388,20 +390,18 @@ describe('Agenda', () => {
 						.schedule('now')
 						.save();
 
-					expect(job1.attrs.nextRunAt!.toISOString()).to.equal(job2.attrs.nextRunAt!.toISOString());
+					expect(job1.attrs.nextRunAt!.toISOString()).to.equal(
+						job2.attrs.nextRunAt!.toISOString()
+					);
 
-					mongoDb
+					const jobs = await mongoDb
 						.collection('agendaJobs')
 						.find({
 							name: 'unique job'
 						})
-						.toArray((err, jobs) => {
-							if (err) {
-								throw err;
-							}
+						.toArray();
 
-							expect(jobs).to.have.length(1);
-						});
+					expect(jobs).to.have.length(1);
 				});
 			});
 
@@ -438,18 +438,13 @@ describe('Agenda', () => {
 						.schedule(time)
 						.save();
 
-					mongoDb
+					const jobs = await mongoDb
 						.collection('agendaJobs')
 						.find({
 							name: 'unique job'
 						})
-						.toArray((err, jobs) => {
-							if (err) {
-								throw err;
-							}
-
-							expect(jobs).to.have.length(2);
-						});
+						.toArray();
+					expect(jobs).to.have.length(2);
 				});
 			});
 		});
@@ -461,7 +456,9 @@ describe('Agenda', () => {
 			it('sets the schedule', async () => {
 				const now = new Date();
 				expect(
-					await globalAgenda.now('send email').then(({ attrs }) => attrs.nextRunAt!.valueOf())
+					await globalAgenda
+						.now('send email')
+						.then(({ attrs }) => attrs.nextRunAt!.valueOf())
 				).to.greaterThan(now.valueOf() - 1);
 			});
 
