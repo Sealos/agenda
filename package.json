@@ -1,5 +1,5 @@
 {
-  "name": "agenda",
+  "name": "@sealos/agenda",
   "version": "5.0.0",
   "description": "Light weight job scheduler for Node.js",
   "main": "dist/index.js",
@@ -35,7 +35,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/hokify/agenda"
+    "url": "git://github.com/Sealos/agenda"
   },
   "keywords": [
     "job",
@@ -48,7 +48,7 @@
   "author": "Simon Tretter <simon.tretter@hokify.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hokify/agenda/issues"
+    "url": "https://github.com/Sealos/agenda/issues"
   },
   "dependencies": {
     "cron-parser": "^4.9.0",
