@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/Sealos/agenda/compare/v1.1.0...v1.1.1) (2024-02-01)
+
+
+### Bug Fixes
+
+* upgrade docs ([ee0c4fe](https://github.com/Sealos/agenda/commit/ee0c4fe9ae4dc2aecb046c9975afb358c59fe5da))
+
 # [1.1.0](https://github.com/Sealos/agenda/compare/v1.0.0...v1.1.0) (2024-02-01)
 
 
