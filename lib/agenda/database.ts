@@ -1,9 +1,9 @@
-import createDebugger from "debug";
-import { AnyError, Collection, MongoClient, MongoClientOptions } from "mongodb";
-import { Agenda } from ".";
-import { hasMongoProtocol } from "./has-mongo-protocol";
+import createDebugger from 'debug';
+import { AnyError, Collection, MongoClient, MongoClientOptions } from 'mongodb';
+import { Agenda } from '.';
+import { hasMongoProtocol } from './has-mongo-protocol';
 
-const debug = createDebugger("agenda:database");
+const debug = createDebugger('agenda:database');
 
 /**
  * Connect to the spec'd MongoDB server and database.
@@ -21,40 +21,42 @@ const debug = createDebugger("agenda:database");
  * @param [options] options for connecting
  * @param [cb] callback of MongoDB connection
  */
-export const database = function (
-  this: Agenda,
-  url: string,
-  collection?: string,
-  options: MongoClientOptions = {},
-  cb?: (error: AnyError | undefined, collection: Collection<any> | null) => void
+export const database = function(
+    this: Agenda,
+    url: string,
+    collection?: string,
+    options: MongoClientOptions = {},
+    cb?: (error: AnyError | undefined, collection: Collection<any> | null) => void
 ): Agenda | void {
-  if (!hasMongoProtocol(url)) {
-    url = "mongodb://" + url;
-  }
+    if (!hasMongoProtocol(url)) {
+        url = 'mongodb://' + url;
+    }
 
-  collection = collection || "agendaJobs";
+    collection = collection || 'agendaJobs';
 
-    MongoClient.connect(url, options).then((client) => {
-        debug(
-            "successful connection to MongoDB using collection: [%s]",
-            collection
-        );
+    MongoClient.connect(url, options)
+        .then((client) => {
+            debug(
+                'successful connection to MongoDB using collection: [%s]',
+                collection
+            );
 
-        if (client) {
-            this._db = client;
-            this._mdb = client.db();
-            this.db_init(collection, cb);
-        } else {
-            throw new Error("Mongo Client is undefined");
-        }
-        }).catch((error) => {
+            if (client) {
+                this._db = client;
+                this._mdb = client.db();
+                this.db_init(collection, cb);
+            } else {
+                throw new Error('Mongo Client is undefined');
+            }
+        })
+        .catch((error) => {
 
-        debug("error connecting to MongoDB using collection: [%s]", collection);
+            debug('error connecting to MongoDB using collection: [%s]', collection);
         if (cb) {
             cb(error, null);
         } else {
             throw error;
         }
     });
-  return this;
+    return this;
 };
