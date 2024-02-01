@@ -25,13 +25,9 @@
         "mocha-debug-internal": "DEBUG=agenda:internal:** mocha --reporter spec --timeout 8000 -b",
         "postversion": "npm run docs",
         "predocs": "npm run build",
-        "premocha-debug": "npm run build",
-        "premocha-debug-all": "npm run build",
-        "premocha-debug-internal": "npm run build",
         "prepublishOnly": "npm run build",
-        "pretest": "npm run build",
         "release": "semantic-release",
-        "test": "USE_MONGODB=true npm run mocha"
+        "test": "USE_MONGODB=true ./run_mocha.sh --reporter spec --timeout 8000 --exit -b"
     },
     "config": {
         "blanket": {
@@ -83,6 +79,7 @@
         "mongodb-memory-server": "^9.1.6",
         "prettier": "^2.3.2",
         "sinon": "^17.0.1",
+        "ts-mocha": "^10.0.0",
         "ts-node": "^10.9.2",
         "typescript": "^5.3.3"
     }
