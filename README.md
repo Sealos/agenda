@@ -47,7 +47,7 @@ _Kudos for making the comparison chart goes to [Bull](https://www.npmjs.com/pack
 
 Install via NPM
 
-    npm install agenda
+    npm install @sealos/agenda
 
 You will also need a working [Mongo](https://www.mongodb.com/) database (v3) to point it to.
 
@@ -56,14 +56,14 @@ You will also need a working [Mongo](https://www.mongodb.com/) database (v3) to 
 for regular javascript code, just use the default entrypoint
 
 ```js
-const Agenda = require("agenda");
+const Agenda = require("@sealos/agenda");
 ```
 
 For Typescript, Webpack or other module imports, use `agenda/es` entrypoint:
 e.g.
 
 ```ts
-import Agenda, { Job, JobAttributesData } from 'agenda'
+import Agenda, { Job, JobAttributesData } from '@sealos/agenda'
 
 const mongoConnectionString = "mongodb://127.0.0.1/agenda";
 const agenda = new Agenda({ db: { address: mongoConnectionString } });

@@ -8,6 +8,10 @@ if (!useHostedMongo) {
   mongoServer = require("./mongo-server");
 }
 
+/**
+ * @param {string} agendaDatabase
+ * @returns {Promise<string>}
+ */
 module.exports = async function (agendaDatabase = "agenda-test") {
   let mongoURI;
 

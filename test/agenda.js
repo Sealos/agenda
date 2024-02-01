@@ -32,6 +32,10 @@ describe("Agenda", () => {
     agenda = new Agenda({
       db: {
         address: mongoCfg,
+          options: {
+              useNewUrlParser: true,
+              useUnifiedTopology: true
+          }
       },
     });
 
