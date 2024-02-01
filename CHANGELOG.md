@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Sealos/agenda/compare/v1.0.0...v1.1.0) (2024-02-01)
+
+
+### Features
+
+* publish ([fac369f](https://github.com/Sealos/agenda/commit/fac369fcf7ae4a08a85a2a2bb45be3c5a72851c0))
+
 # 1.0.0 (2024-02-01)
 
 
