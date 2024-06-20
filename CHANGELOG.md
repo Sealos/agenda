@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/Sealos/agenda/compare/v1.1.1...v1.1.2) (2024-06-20)
+
+
+### Bug Fixes
+
+* **dev:** remove codeql and trigger release ([e2c5016](https://github.com/Sealos/agenda/commit/e2c501687550d487ebc807daccfa5e6a0b6fb052))
+
 ## [1.1.1](https://github.com/Sealos/agenda/compare/v1.1.0...v1.1.1) (2024-02-01)
 
 
