@@ -11,17 +11,26 @@ const debug = createDebugger("agenda:now");
  * @function
  * @param name name of job to schedule
  * @param data data to pass to job
+ * @param options
  */
 export async function now<T extends JobAttributesData>(
     this: Agenda,
     name: string,
-    data: T
+    data: T,
+    options?: {
+        priority: string | number
+    }
 ): Promise<Job> {
     debug('Agenda.now(%s, [Object])', name);
     try {
         const job = this.create(name, data);
 
         job.schedule(new Date());
+
+        if (options?.priority) {
+            job.priority(options.priority);
+        }
+
         await job.save();
 
         return job;
