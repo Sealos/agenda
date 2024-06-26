@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Sealos/agenda/compare/v1.1.2...v1.2.0) (2024-06-26)
+
+
+### Features
+
+* allow priority when queuing jobs ([c14e468](https://github.com/Sealos/agenda/commit/c14e468ea6dc77ae20834a31da630f504c17766e))
+
 ## [1.1.2](https://github.com/Sealos/agenda/compare/v1.1.1...v1.1.2) (2024-06-20)
 
 
