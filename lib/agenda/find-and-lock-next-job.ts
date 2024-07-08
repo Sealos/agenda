@@ -72,7 +72,6 @@ export async function findAndLockNextJob(
             value._id
         );
 
-        // @ts-expect-error fix
         job = createJob(this, value);
     }
 

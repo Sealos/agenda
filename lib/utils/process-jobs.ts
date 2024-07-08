@@ -164,7 +164,6 @@ export async function processJobs(
 
         const value = resp?.value;
         if (value) {
-            // @ts-expect-error missing types
             const job = createJob(self, value);
             debug(
                 'found job [%s:%s] that can be locked on the fly',
