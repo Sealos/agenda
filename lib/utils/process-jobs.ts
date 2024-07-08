@@ -162,9 +162,10 @@ export async function processJobs(
             returnDocument: 'after'
         });
 
-        if (resp.value) {
+        const value = resp?.value;
+        if (value) {
             // @ts-expect-error missing types
-            const job = createJob(self, resp.value);
+            const job = createJob(self, value);
             debug(
                 'found job [%s:%s] that can be locked on the fly',
                 job.attrs.name,

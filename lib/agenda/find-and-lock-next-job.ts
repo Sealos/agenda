@@ -65,14 +65,15 @@ export async function findAndLockNextJob(
     );
 
     let job: Job | undefined = undefined;
-    if (result.value) {
+    const value = result?.value;
+    if (value) {
         debug(
             'found a job available to lock, creating a new job on Agenda with id [%s]',
-            result.value._id
+            value._id
         );
 
         // @ts-expect-error fix
-        job = createJob(this, result.value);
+        job = createJob(this, value);
     }
 
     return job;
