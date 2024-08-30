@@ -23,10 +23,7 @@ describe("MongoDB connection", () => {
     let agenda;
 
     try {
-      client = new MongoClient(mongoCfg, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
+      client = new MongoClient(mongoCfg);
 
       await client.connect();
 

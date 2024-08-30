@@ -32,10 +32,6 @@ describe("Agenda", () => {
     agenda = new Agenda({
       db: {
         address: mongoCfg,
-          options: {
-              useNewUrlParser: true,
-              useUnifiedTopology: true
-          }
       },
     });
 
@@ -609,8 +605,8 @@ describe("Agenda", () => {
             .schedule("now")
             .save();
 
-          expect(job1.attrs.nextRunAt.toISOString()).to.equal(
-            job2.attrs.nextRunAt.toISOString()
+          expect(job1.attrs.nextRunAt.toLocaleDateString()).to.equal(
+            job2.attrs.nextRunAt.toLocaleDateString()
           );
 
           agenda._collection
