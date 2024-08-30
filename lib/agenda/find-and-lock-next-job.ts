@@ -71,7 +71,6 @@ export async function findAndLockNextJob(
             result.value._id
         );
 
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         job = createJob(this, result.value);
     }

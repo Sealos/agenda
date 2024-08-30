@@ -106,9 +106,8 @@ export const saveJob = async function(this: Agenda, job: Job): Promise<Job> {
                 update,
                 {
                     returnDocument: 'after',
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
-                    includeResultMetadata: true
+                    //includeResultMetadata: true
                 }
             );
             return await processDbResult.call(this, job, result);
@@ -150,9 +149,8 @@ export const saveJob = async function(this: Agenda, job: Job): Promise<Job> {
                 {
                     upsert: true,
                     returnDocument: 'after',
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
-                    includeResultMetadata: true
+                    //includeResultMetadata: true
                 }
             );
             return await processDbResult.call(this, job, result);
@@ -174,9 +172,8 @@ export const saveJob = async function(this: Agenda, job: Job): Promise<Job> {
             );
             const result = await this._collection.findOneAndUpdate(query, update, {
                 upsert: true,
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
-                includeResultMetadata: true,
+                //includeResultMetadata: true,
                 returnDocument: 'after'
             });
             return await processDbResult.call(this, job, result);

@@ -160,13 +160,12 @@ export async function processJobs(
         // Lock the job in MongoDB!
         const resp = await self._collection.findOneAndUpdate(criteria, update, {
             returnDocument: 'after',
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             includeResultMetadata: true
         });
 
         if (resp && resp.value) {
-            // @ts-expect-error missing types
+            // @ts-ignore
             const job = createJob(self, resp.value);
             debug(
                 'found job [%s:%s] that can be locked on the fly',
