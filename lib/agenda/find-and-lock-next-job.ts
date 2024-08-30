@@ -1,8 +1,8 @@
-import createDebugger from "debug";
-import { createJob } from "../utils";
-import { Agenda } from ".";
-import { Job } from "../job";
-import { ReturnDocument } from "mongodb";
+import createDebugger from 'debug';
+import { createJob } from '../utils';
+import { Agenda } from '.';
+import { Job } from '../job';
+import { ReturnDocument } from 'mongodb';
 
 const debug = createDebugger("agenda:internal:_findAndLockNextJob");
 
@@ -65,13 +65,14 @@ export async function findAndLockNextJob(
     );
 
     let job: Job | undefined = undefined;
-    if (result.value) {
+    if (result && result.value) {
         debug(
             'found a job available to lock, creating a new job on Agenda with id [%s]',
             result.value._id
         );
 
-        // @ts-expect-error fix
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         job = createJob(this, result.value);
     }
 

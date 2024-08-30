@@ -3,7 +3,7 @@ import { createJob } from './create-job';
 import { Job } from '../job';
 import { Agenda } from '../agenda';
 
-const debug = createDebugger("agenda:internal:processJobs");
+const debug = createDebugger('agenda:internal:processJobs');
 
 
 /**
@@ -159,10 +159,13 @@ export async function processJobs(
 
         // Lock the job in MongoDB!
         const resp = await self._collection.findOneAndUpdate(criteria, update, {
-            returnDocument: 'after'
+            returnDocument: 'after',
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            includeResultMetadata: true
         });
 
-        if (resp.value) {
+        if (resp && resp.value) {
             // @ts-expect-error missing types
             const job = createJob(self, resp.value);
             debug(
