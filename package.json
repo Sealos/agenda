@@ -55,7 +55,7 @@
     "dependencies": {
         "cron-parser": "^4.9.0",
         "date.js": "~0.3.3",
-        "debug": "~4.3.4",
+        "debug": "~4.4.0",
         "human-interval": "~2.0.1",
         "moment-timezone": "~0.5.37",
         "mongodb": "^5.9.2"
